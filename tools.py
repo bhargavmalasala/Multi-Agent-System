@@ -2,12 +2,10 @@ from langchain.tools import tool
 import requests
 from bs4 import BeautifulSoup
 from tavily import TavilyClient
-import os
-from dotenv import load_dotenv
 from rich import print
-load_dotenv()
+from config import get_secret
 
-tavily = TavilyClient(api_key=os.getenv("TAVILY_API_KEY"))
+tavily = TavilyClient(api_key=get_secret("TAVILY_API_KEY"))
 
 @tool
 def web_search(query : str) -> str:
